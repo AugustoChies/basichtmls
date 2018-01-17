@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Calculadora </title>
+    <style>
+        
+        .calculadora table, .calculadora td ,.calculadora th {
+              border-radius:15px;
+              border: 1px solid black;
+
+        }
+        .calculadora table{
+             table-layout: fixed;
+             width: 200px;
+             height: 350px;
+             align-self: center;
+             background-color: lightgrey;
+             box-shadow: 10px 10px 10px grey;
+        }
+        .calculadora td{
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .calculadora td:hover
+        {
+            background-color: lightgoldenrodyellow;
+        }
+        #tela{
+            text-align: right;
+            font-size: 40pt;
+            background-color: rgba(127,127,127,0.5);
+            color: white;
+            cursor: default;
+        }
+        #tela:hover
+        {
+            background-color: rgba(127,127,127,0.5);
+        }
+        #tela td{
+            position:relative;
+            right: 30 px;
+            top: 10 px;
+        }
+        #zero{
+            text-align: left;
+        }
+        #zero td{
+            position:relative;
+            left: 30 px;
+            top: 10 px;
+        }
+        .laranja{
+             background-color: chocolate;
+             color: white; 
+        }
+        .laranja:hover
+        {
+             background-color: orange;
+        }
+        
+        body{
+            font-size: 18pt;
+        }
+        
+       
+        .calculadora,.notepad,.tictactoe{
+            width: 270px;
+            height: 360px;
+            margin: 10px;
+        }
+        
+        #c01,#c02,#c03,#c11,#c12,#c13
+        {
+            border-bottom: 1px solid black;
+        }
+        #c01,#c02,#c21,#c22,#c11,#c12
+        {
+            border-right: 1px solid black;
+        }
+   
+    </style>
+    
+    <script type="text/javascript">
+    
+        
+        var tela = document.getElementById("tela");
+        var operand1 = 0;
+        var operand2 = 0;
+        var operation= null;
+        var current = 1;
+        function pressAC()
+        {
+            current=1;
+            operand1 = 0;
+            operand2 = 0;
+            document.getElementById("tela").innerHTML = 0;                    
+        }
+        function pressInvert()
+        {
+            if(current==1)
+                {
+                    operand1 *= -1;
+                    document.getElementById("tela").innerHTML = operand1; 
+                }
+            else
+                {
+                    operand2 *= -1;
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+        }
+        function pressPercent()
+        {
+            if(current == 1)
+                {
+                    current = 2;
+                    operation = "percent";
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+            else
+                {
+                    result();
+                }
+        }
+        function pressDiv()
+        {
+            if(current == 1)
+                {
+                    current = 2;
+                    operation = "div";
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+            else
+                {
+                    result();
+                }
+        }
+        function pressMult()
+        {
+            if(current == 1)
+                {
+                    current = 2;
+                    operation = "mult";
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+            else
+                {
+                    result();
+                }
+        }
+        function pressMinus()
+        {
+            if(current == 1)
+                {
+                    current = 2;
+                    operation = "minus";
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+            else
+                {
+                    result();
+                }
+            
+        }
+        function pressPlus()
+        {
+            if(current == 1)
+                {
+                    current = 2;
+                    operation = "plus";
+                    document.getElementById("tela").innerHTML = operand2; 
+                }
+            else
+                {
+                    result();
+                }
+        }
+        function pressEquals()
+        {
+            if(current != 1)
+                {
+                    result();
+                }
+        }
+        function pressNum(num)
+        {
+            if(current == 1)
+                {
+                    
+                            switch(num)
+                            {    
+                            case 0:
+                                operand1 *= 10;
+                                break;
+                            case 1:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1--;
+                                else
+                                operand1++;
+                                break;
+                            case 2:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=2;
+                                else
+                                    operand1+= 2;
+                                break;
+                            case 3:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=3;
+                                else
+                                operand1+= 3;   
+                                break;
+                            case 4:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=4;
+                                else
+                                operand1+= 4;   
+                                break;
+                            case 5:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=5;
+                                else    
+                                operand1+= 5;   
+                                break; 
+                            case 6:    
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=6;
+                                else       
+                                operand1+= 6;   
+                                break;
+                            case 7:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=7;
+                                else       
+                                operand1+= 7;   
+                                break;
+                            case 8:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=8;
+                                else       
+                                operand1+= 8;   
+                                break;
+                            case 9:
+                                operand1 *= 10;
+                                if(operand1 < 0)
+                                    operand1-=9;
+                                else       
+                                operand1+= 9;   
+                                break;
+                            }
+                    document.getElementById("tela").innerHTML = operand1;                    
+                }
+            else
+                {
+                      switch(num)
+                            {    
+                            case 0:
+                                operand2 *= 10;
+                                break;
+                            case 1:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2--;
+                                else
+                                operand2++;
+                                break;
+                            case 2:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=2;
+                                else
+                                    operand2+= 2;
+                                break;
+                            case 3:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=3;
+                                else
+                                operand2+= 3;   
+                                break;
+                            case 4:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=4;
+                                else
+                                operand2+= 4;   
+                                break;
+                            case 5:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=5;
+                                else    
+                                operand2+= 5;   
+                                break; 
+                            case 6:    
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=6;
+                                else       
+                                operand2+= 6;   
+                                break;
+                            case 7:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=7;
+                                else       
+                                operand2+= 7;   
+                                break;
+                            case 8:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=8;
+                                else       
+                                operand2+= 8;   
+                                break;
+                            case 9:
+                                operand2 *= 10;
+                                if(operand2 < 0)
+                                    operand2-=9;
+                                else       
+                                operand2+= 9;   
+                                break;
+                            }
+                    document.getElementById("tela").innerHTML = operand2;        
+                }
+        }        
+        function result()
+        {
+            switch(operation)
+                    {
+                        case "percent":
+                            operand1 = operand1 * (operand2/100);
+                            current=1;
+                            document.getElementById("tela").innerHTML = operand1;
+                            operand2 = 0;
+                            break;                            
+                        case "div":
+                            operand1 = operand1 /  operand2;
+                            current=1;
+                            document.getElementById("tela").innerHTML = operand1;
+                            operand2 = 0;
+                            break;
+                        case "mult":
+                            operand1 = operand1 *  operand2;
+                            current=1;
+                            document.getElementById("tela").innerHTML = operand1;
+                            operand2 = 0;
+                            break;                            
+                        case "minus":
+                            operand1 = operand1 -  operand2;
+                            current=1;
+                            document.getElementById("tela").innerHTML = operand1;
+                            operand2 = 0;
+                            break;
+                        case "plus":
+                            operand1 = operand1 +  operand2;
+                            current=1;
+                            document.getElementById("tela").innerHTML = operand1;
+                            operand2 = 0;
+                            break;
+                            
+                        default:
+                            break;
+                    }
+            operation = null;
+        }
+        
+        
+        
+    
+    </script>
+</head>
+    
+<body>
+    
+    <div class="calculadora">
+    <table>    
+    <tr>
+        <td colspan="4" rowspan="2" id="tela"> 0 </td>
+    </tr>
+    <tr></tr>
+    <tr>  <td id="AC" onclick="pressAC()">AC</td> <td id="+/-" onclick="pressInvert()">+/-</td> <td id="%" onclick="pressPercent()">%</td> <td class="laranja" id=":" onclick="pressDiv()">:</td></tr>
+    <tr>  <td id="7" onclick="pressNum(7)">7</td> <td id="8" onclick="pressNum(8)">8</td> <td id="9" onclick="pressNum(9)">9</td>           <td class="laranja" id="x" onclick="pressMult()">x</td></tr>
+    <tr>  <td id="4" onclick="pressNum(4)">4</td> <td id="5" onclick="pressNum(5)">5</td> <td id="6" onclick="pressNum(6)">6</td>           <td class="laranja" id="-" onclick="pressMinus()">-</td></tr>
+    <tr>  <td id="1" onclick="pressNum(1)">1</td> <td id="2" onclick="pressNum(2)">2</td> <td id="3" onclick="pressNum(3)">3</td>           <td class="laranja" id="+" onclick="pressPlus()">+</td></tr>
+    <tr>  <td colspan="2" id="zero" onclick="pressNum(0)">0</td>   <td colspan="2" class="laranja" id="=" onclick="pressEquals()">=</td></tr>
+    </table>
+    </div>
+    
+    
+</body>
+    
+</html>
